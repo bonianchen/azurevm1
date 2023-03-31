@@ -46,3 +46,8 @@ az vm create \
 
 IPD2=`grep privateIp log_D2as_v5 | cut -d\" -f4`
 IPA1=`grep publicIp log_A1_v2 | cut -d\" -f4`
+
+scp -i CRED.pem CRED.pem azureuser@${IPA1}:/
+scp -i CRED.pem azurevm1/westus3_provision.sh azureuser@${IPA1}:/
+ssh -i CRED.pem azureuser@${IPA1} "scp -i CRED.pem westus3_provision.sh azureuser@${IPD2}:/; ssh -i CRED.pem azureuser@${IPD2} westus3_provision.sh"
+
