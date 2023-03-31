@@ -43,3 +43,6 @@ az vm create \
   --priority Spot \
   --eviction-policy Deallocate \
   --ssh-key-name 202303vm_sshkey &> log_A1_v2
+
+IPD2=`grep privateIp log_D2as_v5 | cut -d\" -f4`
+IPA1=`grep publicIp log_A1_v2 | cut -d\" -f4`
