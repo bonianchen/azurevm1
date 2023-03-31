@@ -36,7 +36,6 @@ az vm create \
   --name 202303vm_boot \
   --subnet 202303vmSubnet \
   --image Debian:debian-11:11:latest \
-  --os-disk-size-gb 8 \
   --vnet-name ${SPOT_VNET} \
   --public-ip-sku Basic \
   --nsg ${SPOT_NSG} \
