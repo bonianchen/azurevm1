@@ -27,7 +27,7 @@ az vm create \
   --admin-username azureuser \
   --priority Spot \
   --eviction-policy Deallocate \
-  --ssh-key-name 202303vm_sshkey
+  --ssh-key-name 202303vm_sshkey &> log_D2as_v5
 
 az vm create \
   --resource-group ${SPOT_RES} \
@@ -43,4 +43,4 @@ az vm create \
   --admin-username azureuser \
   --priority Spot \
   --eviction-policy Deallocate \
-  --ssh-key-name 202303vm_sshkey
+  --ssh-key-name 202303vm_sshkey &> log_A1_v2
