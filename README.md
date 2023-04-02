@@ -1,6 +1,6 @@
 # Create VM on Microsoft Azure
 
-Step1: Get into Azure Cloud Shell
+Step1: Get into [Azure Cloud Shell](https://shell.azure.com)
 
        https://shell.azure.com
 
