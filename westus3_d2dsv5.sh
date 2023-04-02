@@ -1,12 +1,14 @@
 #!/bin/sh
 
+SPOT_NAME=202303vm
 SPOT_RES=202303vm_wus3_res_group
 SPOT_LOC=westus3
+SPOT_KEY=202303vm_sshkey
 
 az group create --name ${SPOT_RES} --location ${SPOT_LOC}
 
-SPOT_VNET=202303vm_net
-SPOT_NSG=202303vm_net_nsg
+SPOT_VNET=${SPOT_NAME}_net
+SPOT_NSG=${SPOT_NAME}_net_nsg
 
 az network vnet create --name ${SPOT_VNET} --resource-group ${SPOT_RES} --location ${SPOT_LOC} &
 az network nsg create --name ${SPOT_NSG} --resource-group ${SPOT_RES} --location ${SPOT_LOC}
@@ -19,7 +21,7 @@ az vm create \
   --resource-group ${SPOT_RES} \
   --location ${SPOT_LOC} \
   --size Standard_D2ds_v5 \
-  --name 202303vm \
+  --name ${SPOT_NAME} \
   --image Debian:debian-11:11:latest \
   --vnet-name ${SPOT_VNET} \
   --public-ip-address "" \
@@ -27,14 +29,14 @@ az vm create \
   --admin-username azureuser \
   --priority Spot \
   --eviction-policy Deallocate \
-  --ssh-key-name 202303vm_sshkey &> log_D2as_v5
+  --ssh-key-name ${SPOT_KEY} &> log_D2as_v5
 
 az vm create \
   --resource-group ${SPOT_RES} \
   --location ${SPOT_LOC} \
   --size Standard_A1_v2 \
-  --name 202303vm_boot \
-  --subnet 202303vmSubnet \
+  --name ${SPOT_NAME}_boot \
+  --subnet ${SPOT_NAME}Subnet \
   --image Debian:debian-11:11:latest \
   --vnet-name ${SPOT_VNET} \
   --public-ip-sku Basic \
@@ -42,7 +44,7 @@ az vm create \
   --admin-username azureuser \
   --priority Spot \
   --eviction-policy Deallocate \
-  --ssh-key-name 202303vm_sshkey &> log_A1_v2
+  --ssh-key-name ${SPOT_KEY} &> log_A1_v2
 
 IPD2=`grep privateIp log_D2as_v5 | cut -d\" -f4`
 IPA1=`grep publicIp log_A1_v2 | cut -d\" -f4`
