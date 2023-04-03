@@ -20,7 +20,7 @@ az network nsg rule create --name ${SPOT_NSG}_rule2 --resource-group ${SPOT_RES}
 az vm create \
   --resource-group ${SPOT_RES} \
   --location ${SPOT_LOC} \
-  --size Standard_D2ds_v5 \
+  --size Standard_D2as_v5 \
   --name ${SPOT_NAME} \
   --image Debian:debian-11:11:latest \
   --vnet-name ${SPOT_VNET} \
