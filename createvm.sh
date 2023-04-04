@@ -30,10 +30,7 @@ az vm create \
   --admin-username azureuser \
   --priority Spot \
   --eviction-policy Deallocate \
-  --ssh-key-name ${SPOT_KEY} &> log_vm
-
-IPVM=`grep privateIp log_vm | cut -d\" -f4`
-echo "${SPOT_NAME} created: ${IPVM}"
+  --ssh-key-name ${SPOT_KEY} 2>&1 > log_vm &
 
 az vm create \
   --resource-group ${SPOT_RES} \
@@ -54,4 +51,10 @@ IPA1=`grep publicIp log_A1_v2 | cut -d\" -f4`
 
 scp -o StrictHostKeyChecking=accept-new -i CRED.pem CRED.pem azureuser@${IPA1}:/home/azureuser
 scp -i CRED.pem azurevm1/provisionvm.sh azureuser@${IPA1}:/home/azureuser
+
+fg; fg; fg; fg
+
+IPVM=`grep privateIp log_vm | cut -d\" -f4`
+echo "${SPOT_NAME} created: ${IPVM}"
+
 ssh -i CRED.pem azureuser@${IPA1} "scp -o StrictHostKeyChecking=accept-new -i CRED.pem provisionvm.sh azureuser@${IPVM}:/home/azureuser; ssh -i CRED.pem azureuser@${IPVM} 'source provisionvm.sh'"
