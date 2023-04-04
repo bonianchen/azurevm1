@@ -53,5 +53,5 @@ az vm create \
 IPA1=`grep publicIp log_A1_v2 | cut -d\" -f4`
 
 scp -o StrictHostKeyChecking=accept-new -i CRED.pem CRED.pem azureuser@${IPA1}:/home/azureuser
-scp -i CRED.pem azurevm1/westus3_provision.sh azureuser@${IPA1}:/home/azureuser
-ssh -i CRED.pem azureuser@${IPA1} "scp -o StrictHostKeyChecking=accept-new -i CRED.pem westus3_provision.sh azureuser@${IPVM}:/home/azureuser; ssh -i CRED.pem azureuser@${IPVM} 'source westus3_provision.sh'"
+scp -i CRED.pem azurevm1/provisionvm.sh azureuser@${IPA1}:/home/azureuser
+ssh -i CRED.pem azureuser@${IPA1} "scp -o StrictHostKeyChecking=accept-new -i CRED.pem provisionvm.sh azureuser@${IPVM}:/home/azureuser; ssh -i CRED.pem azureuser@${IPVM} 'source provisionvm.sh'"
