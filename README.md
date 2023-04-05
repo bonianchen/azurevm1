@@ -4,7 +4,7 @@ Step1: Get into [Azure Cloud Shell](https://shell.azure.com)
 
        https://shell.azure.com
 
-Step2: Have SSH credential file (CRED.pem) in Cloud Shell
+Step2: Have tailscale key (TAILSCALE.key) in Cloud Shell
 
 Step3: Download project from github
 
