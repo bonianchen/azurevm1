@@ -36,4 +36,5 @@ IDVM=`grep '"id"' log_vm | cut -d\" -f4`
 echo "${SPOT_NAME} created: ${IDVM}"
 
 IPAUTHKEY=`cat TAILSCALE.key`
-az vm run-command invoke --ids ${IDVM} --scripts "curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null; curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list >/dev/null; sudo apt-get update >/dev/null; sudo apt-get install -y tailscale mosh git >/dev/null; sudo tailscale up --authkey ${IPAUTHKEY} >/dev/null"
+az vm run-command invoke --ids ${IDVM} --command-id RunShellScript \
+  --scripts "curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null; curl -fsSL https://pkgs.tailscale.com/stable/debian/bullseye.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list >/dev/null; sudo apt-get update >/dev/null; sudo apt-get install -y tailscale mosh git >/dev/null; sudo tailscale up --authkey ${IPAUTHKEY} >/dev/null"
