@@ -14,18 +14,7 @@ Step4: Run createvm.sh
 
        source azurevm1/createvm.sh westus3_d2asv5.config
 
-
-       2 VM will be created:
-           D2as_v5 with private IP
-           A1_v2 with both private IP and public IP
-
-Step5: Click url appeared after step 4, and login.
-
-Step6: Delete resource names containing "boot" keyword (terminate A1_v2)
-
-       source azurevm1/deleteboot.sh
-
-Step7: Connect to D2as_v5 through IP provided by tailscale.
+Step5: Check the IP address allocated by TailScale, and connect to it. (SSH or mosh)
 
 # Shutdown
 
