@@ -32,6 +32,9 @@ az vm create \
   --eviction-policy Deallocate \
   --ssh-key-name ${SPOT_KEY} 2>&1 > log_vm
 
+# Wait for the VM to be created.
+az vm wait --name ${SPOT_NAME} --state running
+
 IDVM=`grep '"id"' log_vm | cut -d\" -f4`
 echo "${SPOT_NAME} created: ${IDVM}"
 
