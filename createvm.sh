@@ -28,10 +28,11 @@ az vm create \
   --license-type None \
   --vnet-name ${SPOT_VNET} \
   --public-ip-address "" \
+  --nic-delete-option Delete \
   --nsg ${SPOT_NSG} \
   --admin-username azureuser \
   --priority Spot \
-  --max-price 0.01 \
+  --max-price "0.01" \
   --eviction-policy Deallocate \
   --ssh-key-name ${SPOT_KEY} 2>&1 > log_vm
 
