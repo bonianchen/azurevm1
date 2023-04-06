@@ -23,6 +23,7 @@ az vm create \
   --location ${SPOT_LOC} \
   --size ${SPOT_TYPE} \
   --name ${SPOT_NAME} \
+  --os-type Linux \
   --image Debian:debian-11:11:latest \
   --vnet-name ${SPOT_VNET} \
   --public-ip-address "" \
