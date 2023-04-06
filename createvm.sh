@@ -23,16 +23,14 @@ az vm create \
   --location ${SPOT_LOC} \
   --size ${SPOT_TYPE} \
   --name ${SPOT_NAME} \
-  --os-type Linux \
   --image Debian:debian-11:11:latest \
-  --license-type None \
   --vnet-name ${SPOT_VNET} \
   --public-ip-address "" \
   --nic-delete-option Delete \
   --nsg ${SPOT_NSG} \
   --admin-username azureuser \
   --priority Spot \
-  --max-price "0.01" \
+  --max-price 0.01 \
   --eviction-policy Deallocate \
   --ssh-key-name ${SPOT_KEY} 2>&1 > log_vm
 
