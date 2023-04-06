@@ -31,6 +31,7 @@ az vm create \
   --nsg ${SPOT_NSG} \
   --admin-username azureuser \
   --priority Spot \
+  --max-price 0.01 \
   --eviction-policy Deallocate \
   --ssh-key-name ${SPOT_KEY} 2>&1 > log_vm
 
